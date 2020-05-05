@@ -1,0 +1,23 @@
+syntax = "proto3";
+package dpg.handler;
+option go_package = "ghandler";
+//下注请求
+
+message HandlerReply{
+  int64 code=1;
+  string data=2;
+  string summary=3;
+}
+message HandlerReq {
+  string token=1;
+  string uid=2;
+  string group=3;
+  string content=4;
+  string platform=5;
+  string version=6;
+  int64 timestamp=7;
+  int64 operation=8;
+}
+service HandlerServer {
+  rpc Handler(HandlerReq) returns(HandlerReply);
+}

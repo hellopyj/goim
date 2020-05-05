@@ -1,0 +1,37 @@
+syntax = "proto3";
+package dpg.push;
+option go_package = "gpush";
+//下注请求
+
+message RetData{
+  int64 code=1;
+  string data=2;
+  string summary=3;
+}
+message PushKeysReq{
+  int64 op = 1;
+  repeated string keys =2;
+  string data=3;
+}
+message PushMidsReq{
+  int64 op = 1;
+  repeated int64 mids =2;
+  string data=3;
+}
+message PushRoomReq{
+  int64 op = 1;
+  string type =2;
+  string room=3;
+  string data=4;
+}
+message PushAllReq{
+  int64 op = 1;
+  int64 speed =2;
+  string data=3;
+}
+service PushDeal {
+  rpc PushKeys(PushKeysReq) returns(RetData);
+  rpc PushMids(PushMidsReq) returns(RetData);
+  rpc PushRoom(PushRoomReq) returns(RetData);
+  rpc PushAll(PushAllReq) returns(RetData);
+}

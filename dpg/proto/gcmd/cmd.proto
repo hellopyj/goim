@@ -1,0 +1,29 @@
+syntax = "proto3";
+package dpg.cmd;
+option go_package = "gcmd";
+//下注请求
+
+message RetData{
+  int64 code=1;
+  bytes data=2;
+  string summary=3;
+}
+message CmdReq {
+  string token = 1;
+  int64 uid = 2;
+  int64 roomid = 3;
+  bytes command =4;
+  string platform =5;
+  int64 timestamp =6;
+}
+message AuthReq{
+  string token = 1;
+  int64 uid = 2;
+  int64 roomid=3;
+  string platform =4;
+  int64 timestamp =5;
+}
+service CmdDeal {
+  rpc Cmd(CmdReq) returns(RetData);
+  rpc Auth(AuthReq) returns(RetData);
+}
